@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+<title>GHOAD - To The Moon | ghoadcoin.xyz</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ========================= */
+/* BASE STYLES & BACKGROUND */
+/* ========================= */
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+    font-family:'Orbitron',sans-serif;
+    background:#07111d;
+    color:white;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    /* IMAGEN DE FONDO MEJORADA */
+    background: linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.65)), url("img/back-bg.png");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    z-index:-2;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background: radial-gradient(circle at top, rgba(0,255,255,0.12), transparent 60%);
+    z-index:-1;
+}
+
+/* NAVBAR */
+nav{
+    width:100%; position:fixed; top:0; left:0; padding:18px 8%;
+    display:flex; justify-content:space-between; align-items:center;
+    backdrop-filter:blur(18px); background:rgba(5,10,20,0.75);
+    border-bottom:1px solid rgba(255,255,255,0.08); z-index:1000;
+}
+.logo{ display:flex; align-items:center; gap:12px; }
+.logo img{ width:55px; height:55px; border-radius:50%; box-shadow:0 0 15px rgba(0,255,255,0.45); }
+.logo h1{ font-size: clamp(20px, 4vw, 28px); font-weight:800; color:#79ffff; letter-spacing:2px; }
+
+.nav-links{ display:flex; gap:25px; }
+.nav-links a{ color:white; text-decoration:none; font-size:14px; font-weight:600; transition:0.3s; }
+.nav-links a:hover{ color:#6ffcff; text-shadow: 0 0 10px #00ffff; }
+
+/* HERO SECTION */
+.hero{ min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:120px 20px 80px; }
+.hero-content{ max-width:950px; width:100%; }
+.hero-logo{ width: clamp(140px, 25vw, 170px); border-radius:50%; margin-bottom:30px; box-shadow:0 0 40px rgba(0,255,255,0.4); animation:float 5s ease-in-out infinite; }
+@keyframes float{ 0%, 100%{ transform:translateY(0px); } 50%{ transform:translateY(-15px); } }
+
+.hero h2{ font-size: clamp(40px, 9vw, 78px); line-height:1.1; margin-bottom:20px; }
+.hero h2 span{ color:#65ffff; text-shadow:0 0 25px rgba(0,255,255,0.4); }
+.hero p{ font-size: clamp(16px, 3vw, 19px); color:#d9f7ff; line-height:1.8; margin-bottom: 40px; }
+
+/* BUTTONS */
+.hero-buttons{ display:flex; justify-content:center; flex-wrap:wrap; gap:15px; }
+.btn{ padding:18px 38px; border-radius:14px; font-size:15px; font-weight:700; text-decoration:none; transition:0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+.btn-primary{ background:#61ffff; color:#041018; box-shadow:0 0 20px rgba(0,255,255,0.4); }
+.btn-primary:hover{ transform:translateY(-4px) scale(1.03); box-shadow:0 0 30px rgba(0,255,255,0.6); }
+.btn-secondary{ background:rgba(255,255,255,0.08); color:white; border:1px solid rgba(255,255,255,0.15); }
+.btn-secondary:hover{ background:rgba(255,255,255,0.15); transform:translateY(-2px); }
+
+/* SECTIONS */
+.section{ padding:100px 8%; }
+.section-title{ text-align:center; margin-bottom:60px; }
+.section-title h3{ font-size: clamp(35px, 6vw, 52px); }
+.section-title span{ color:#69ffff; }
+
+/* CARDS HOVER */
+.cards{ display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:30px; }
+.card{
+    background:rgba(255,255,255,0.05); padding:45px 30px; border-radius:26px;
+    border:1px solid rgba(255,255,255,0.1); backdrop-filter:blur(12px);
+    transition:0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-align:center;
+}
+.card:hover{ transform:translateY(-15px); border-color:rgba(0,255,255,0.6); box-shadow:0 10px 40px rgba(0,255,255,0.2); }
+.card img{ width:75px; height:75px; border-radius:50%; margin-bottom:25px; box-shadow:0 0 20px rgba(0,255,255,0.3); }
+.card h4{ color:#72ffff; margin-bottom:18px; font-size:24px; }
+.card p{ color:#d7f4ff; line-height:1.8; font-size:15px; }
+
+/* HOW TO BUY */
+.buy-container{ display:grid; grid-template-columns: 1fr 1fr; gap:35px; }
+.buy-box{ background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:25px; padding:40px; backdrop-filter:blur(10px); }
+.buy-box h4{ margin-bottom:25px; color:#66ffff; font-size:24px; }
+.buy-list{ color:#d7f4ff; line-height:2; list-style:none; padding:0; }
+.video-wrapper{ margin-top:25px; border-radius:18px; overflow:hidden; border:2px solid rgba(102, 255, 255, 0.3); background:#000; }
+video{ width:100%; display:block; }
+
+/* STATS */
+.stats{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:25px; margin-top:50px; }
+.stat-box{
+    background:rgba(255,255,255,0.06); padding:35px; border-radius:22px;
+    border:1px solid rgba(255,255,255,0.08); text-align:center;
+    min-height: 160px; display: flex; flex-direction: column; justify-content: center;
+}
+.stat-box h4{ font-size: clamp(20px, 4vw, 32px); color:#00ffff; margin-bottom:10px; word-break: break-all; }
+.live-dot{ height:12px; width:12px; background:#00ff88; border-radius:50%; display:inline-block; margin-right:10px; animation:blink 1.5s infinite; }
+@keyframes blink { 50% { opacity: 0.3; } }
+
+/* FOOTER */
+footer{ padding:60px 20px; text-align:center; border-top:1px solid rgba(255,255,255,0.05); }
+footer img{ width:70px; border-radius:50%; margin-bottom:20px; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .nav-links { display:none; }
+    .buy-container { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+    .hero-buttons .btn { width: 100%; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">
+        <img src="img/3614.png" alt="GHOAD">
+        <h1>GHOAD</h1>
+    </div>
+    <div class="nav-links">
+        <a href="#about">ABOUT</a>
+        <a href="#buy">HOW TO BUY</a>
+        <a href="#tokenomics">TOKENOMICS</a>
+        <a href="#community">COMMUNITY</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <img src="img/3614.png" class="hero-logo" alt="GHOAD">
+        <h2>GHOAD <span>TO THE MOON</span></h2>
+        <p>GHOAD is the community-powered meme token leading the revolution on the Kaspa Network. Join the GHOAD army alongside the dev and let's reach the moon together.</p>
+        <div class="hero-buttons">
+            <a href="https://kaspa.com/tokens/marketplace/token/GHOAD" target="_blank" class="btn btn-primary">BUY ON KASPA.COM</a>
+            <a href="https://t.me/kspr_home_bot?start=ghoad" target="_blank" class="btn btn-secondary">TELEGRAM BUY BOT</a>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="about">
+    <div class="section-title"><h3>WHY <span>GHOAD</span>?</h3></div>
+    <div class="cards">
+        <div class="card">
+            <img src="img/3614.png" alt="">
+            <h4>Strong Army</h4>
+            <p>The community is the heart of the ecosystem. Every movement is supported by the GHOAD army alongside the dev.</p>
+        </div>
+        <div class="card">
+            <img src="img/3614.png" alt="">
+            <h4>Kaspa Tech</h4>
+            <p>Designed with a unique visual identity and a powerful meme culture on the fastest L1 network in the world.</p>
+        </div>
+        <div class="card">
+            <img src="img/3614.png" alt="">
+            <h4>Moon Vision</h4>
+            <p>Built for moon missions. Every holder becomes part of the journey, pushing GHOAD beyond its limits.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="buy" style="background:rgba(0,0,0,0.2);">
+    <div class="section-title"><h3>HOW TO <span>BUY</span></h3></div>
+    <div class="buy-container">
+        <div class="buy-box">
+            <h4>Marketplace (Kaspa.com)</h4>
+            <ul class="buy-list">
+                <li>• Install the <b>Kasware Wallet</b> extension.</li>
+                <li>• Send <b>Kaspa ($KAS)</b> to your address.</li>
+                <li>• Connect to <b>Kaspa.com</b> Marketplace.</li>
+                <li>• Search for <b>GHOAD</b> and swap.</li>
+            </ul>
+            <a href="https://kaspa.com/tokens/marketplace/token/GHOAD" target="_blank" class="btn btn-primary" style="margin-top:25px; width:100%;">Open Marketplace</a>
+        </div>
+
+        <div class="buy-box">
+            <h4>KSPR Telegram Bot</h4>
+            <ul class="buy-list">
+                <li>• Start the <b>KSPR Bot</b> on Telegram.</li>
+                <li>• Deposit <b>$KAS</b> and use <b>/marketplace</b>.</li>
+                <li>• Search for <b>GHOAD</b> and buy.</li>
+                <li>• Watch the video tutorial below:</li>
+            </ul>
+            <div class="video-wrapper">
+                <video controls playsinline poster="img/back-bg.png">
+                    <source src="IMG_7595.MP4" type="video/mp4">
+                </video>
+            </div>
+            <a href="https://t.me/kspr_home_bot?start=ghoad" target="_blank" class="btn btn-secondary" style="margin-top: 25px; width: 100%;">Open Telegram Bot</a>
+        </div>
+    </div>
+</section>
+
+<section class="section tokenomics" id="tokenomics">
+    <div class="section-title"><h3><span>GHOAD</span> TOKENOMICS</h3></div>
+    <div class="stats">
+        <div class="stat-box"><h4>100%</h4><p>Community Driven</p></div>
+        <div class="stat-box"><h4>4B</h4><p>Total Supply</p></div>
+        <div class="stat-box" style="border-color:#00ffff;">
+            <h4 id="price-val"><span class="live-dot"></span>Syncing...</h4>
+            <p>Live Price (USD)</p>
+        </div>
+        <div class="stat-box" style="border-color:#00ffff;">
+            <h4 id="mc-val"><span class="live-dot"></span>Syncing...</h4>
+            <p>Market Cap</p>
+        </div>
+    </div>
+</section>
+
+<section class="section community" id="community" style="text-align:center;">
+    <div class="section-title"><h3>ONE FROG. <span>ONE VISION.</span></h3></div>
+    <p style="max-width:800px; margin:0 auto 35px; font-size:18px; color:#d1faff; line-height:1.8;">GHOAD is more than a token. It is a movement guided by its community. Join our army today.</p>
+    <div class="hero-buttons">
+        <a href="https://x.com/GhoadCoin" target="_blank" class="btn btn-secondary">TWITTER / X</a>
+        <a href="https://t.me/Ghoad" target="_blank" class="btn btn-secondary">TELEGRAM</a>
+    </div>
+</section>
+
+<footer>
+    <img src="img/3614.png" alt="GHOAD">
+    <p>© 2026 ghoadcoin.xyz — Community Powered</p>
+    <p style="color:#00ffff; font-weight:700; margin-top:10px;">Founder: Hunter</p>
+</footer>
+
+<script>
+async function updateStats() {
+    try {
+        const ts = new Date().getTime();
+        const res = await fetch(`https://api.kasplex.org/v1/krc20/token/GHOAD?t=${ts}`, { cache: "no-store" });
+        const data = await res.json();
+        if (data?.result?.[0]) {
+            const token = data.result[0];
+            const supply = 4000000000;
+            let price = parseFloat(token.price) || 0.00006465;
+            let mc = supply * price;
+            document.getElementById('price-val').innerHTML = `<span class="live-dot"></span>$${price.toFixed(8)}`;
+            document.getElementById('mc-val').innerHTML = `<span class="live-dot"></span>${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(mc)}`;
+        }
+    } catch (e) { console.error("Error updating stats"); }
+}
+updateStats();
+setInterval(updateStats, 20000);
+</script>
+
+</body>
+</html>
